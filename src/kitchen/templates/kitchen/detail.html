@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block recipes_active_class %}active{% endblock recipes_active_class %}
+
+{% block content %}
+
+<div class="tm-main-section light-gray-bg">
+    <div class="container" id="main">
+      {% comment %} <section class="tm-section tm-section-margin-bottom-0 row">
+        <div class="col-lg-12 tm-section-header-container">
+          <h2 class="tm-section-header gold-text tm-handwriting-font"><img src="{% static 'img/logo.png' %}" alt="Logo" class="tm-site-logo"> Popular Items</h2>
+          <div class="tm-hr-container"><hr class="tm-hr"></div>
+        </div>
+        <div class="col-lg-12 tm-popular-items-container">
+          <div class="tm-popular-item">
+            <img src="{% static 'img/popular-1.jpg' %}" alt="Popular" class="tm-popular-item-img">
+            <div class="tm-popular-item-description">
+              <h3 class="tm-handwriting-font tm-popular-item-title"><span class="tm-handwriting-font bigger-first-letter">a</span>mericano</h3><hr class="tm-popular-item-hr">
+              <p>Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque. sed ipsum.</p>
+              <div class="order-now-container">
+                <a href="#" class="order-now-link tm-handwriting-font">Order Now</a>
+              </div>
+            </div>
+          </div>
+          <div class="tm-popular-item">
+            <img src="{% static 'img/popular-2.jpg' %}" alt="Popular" class="tm-popular-item-img">
+            <div class="tm-popular-item-description">
+              <h3 class="tm-handwriting-font tm-popular-item-title"><span class="tm-handwriting-font bigger-first-letter">c</span>appuccino</h3><hr class="tm-popular-item-hr">
+              <p>Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque. sed ipsum.</p>
+              <div class="order-now-container">
+                <a href="#" class="order-now-link tm-handwriting-font">Order Now</a>
+              </div>
+            </div>
+          </div>
+          <div class="tm-popular-item">
+            <img src="{% static 'img/popular-3.jpg' %}" alt="Popular" class="tm-popular-item-img">
+            <div class="tm-popular-item-description">
+              <h3 class="tm-handwriting-font tm-popular-item-title"><span class="tm-handwriting-font bigger-first-letter">m</span>ocha</h3><hr class="tm-popular-item-hr">
+              <p>Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque. sed ipsum.</p>
+              <div class="order-now-container">
+                <a href="#" class="order-now-link tm-handwriting-font">Order Now</a>
+              </div>
+            </div>
+          </div>
+          <div class="tm-popular-item">
+            <img src="{% static 'img/popular-1.jpg' %}" alt="Popular" class="tm-popular-item-img">
+            <div class="tm-popular-item-description">
+              <h3 class="tm-handwriting-font tm-popular-item-title"><span class="tm-handwriting-font bigger-first-letter">a</span>mericano</h3><hr class="tm-popular-item-hr">
+              <p>Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque. sed ipsum.</p>
+              <div class="order-now-container">
+                <a href="#" class="order-now-link tm-handwriting-font">Order Now</a>
+              </div>
+            </div>
+          </div>
+          <div class="tm-popular-item">
+            <img src="{% static 'img/popular-2.jpg' %}" alt="Popular" class="tm-popular-item-img">
+            <div class="tm-popular-item-description">
+              <h3 class="tm-handwriting-font tm-popular-item-title"><span class="tm-handwriting-font bigger-first-letter">c</span>appuccino</h3><hr class="tm-popular-item-hr">
+              <p>Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque. sed ipsum.</p>
+              <div class="order-now-container">
+                <a href="#" class="order-now-link tm-handwriting-font">Order Now</a>
+              </div>
+            </div>
+          </div>
+          <div class="tm-popular-item">
+            <img src="{% static 'img/popular-3.jpg' %}" alt="Popular" class="tm-popular-item-img">
+            <div class="tm-popular-item-description">
+              <h3 class="tm-handwriting-font tm-popular-item-title"><span class="tm-handwriting-font bigger-first-letter">m</span>ocha</h3><hr class="tm-popular-item-hr">
+              <p>Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque. sed ipsum.</p>
+              <div class="order-now-container">
+                <a href="#" class="order-now-link tm-handwriting-font">Order Now</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section> {% endcomment %}
+      <section class="tm-section">
+        <div class="row">
+          <div class="col-lg-12 tm-section-header-container">
+            <h2 class="tm-section-header gold-text tm-handwriting-font"><img src="{% static 'img/logo.png' %}" alt="Logo" class="tm-site-logo"> {{ recipe.title }}</h2>
+            <div class="tm-hr-container"><hr class="tm-hr"></div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="tm-daily-menu-container margin-top-60">
+            <div class="col-lg-4 col-md-4">
+              {% comment %} <img src="{% static 'img/menu-board.png' %}" alt="Menu board" class="tm-daily-menu-img"> {% endcomment %}
+              
+              <img src="{{recipe.thumbnail}}" alt="Menu board" class="tm-daily-menu-img" style="width: 100%;">
+            </div>
+            <div class="col-lg-8 col-md-8">
+              <p>La liste d'ingredients qu'il vous faut pour la recette</p>
+              <ol class="margin-top-30">
+                {% for ingredient in recipe.ingredients.all %}
+                <li> {{ingredient.name}} </li>
+                {% endfor %}
+              </ol>
+              <p>les etapes à suivre</p>
+              <ol class="margin-top-30">
+                {% for cooking_stape in recipe.cooking_stapes.all %}
+                <li> {{cooking_stape.state}} </li>
+                {% endfor %}
+              </ol>
+              <a href="{{recipe.information.source}}" class="tm-more-button margin-top-30">Source</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+</div>
+
+{% endblock content %}

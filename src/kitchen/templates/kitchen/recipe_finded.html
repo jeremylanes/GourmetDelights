@@ -1,0 +1,30 @@
+{% load static %}
+{% for recipe in recipes %}
+<div class="tm-product">
+    <img src="{{recipe.url_image}}" alt="Product" width="150px" height="100px">
+    <div class="tm-product-text">
+    <h3 class="tm-product-title">{{recipe.titre}}</h3>
+    <p class="tm-product-description">
+        {% if recipe.ingredients_manquants %}
+        Il vous manque   ces ingredients pour réaliser la recette: {% for ingredient in recipe.ingredients_manquants %} {{ingredient}},{% endfor %}
+        {% else %}
+        Vous avez tous les ingredients pour réaliser la recette
+        {% endif %}
+    </p>
+    </div>
+    <div class="tm-product-price">
+    <a href="{{recipe.absolute_url}}" class="tm-product-price-link tm-handwriting-font"><span class="tm-product-price-currency">À</span>Propos</a>
+    </div>
+</div>
+{% empty %}
+    <div class="tm-product">
+        <img src="{% static 'img/logo.png' %}" alt="Product">
+        <div class="tm-product-text">
+        <h3 class="tm-product-title">Besoin d'une recette rapide ?</h3>
+        <p class="tm-product-description">Taper la liste des ingredients que vous posedez dans la zone de Recherche</p>
+        </div>
+        <div class="tm-product-price">
+        <a href="{% url 'kitchen:recipes' %}" class="tm-product-price-link tm-handwriting-font"><span class="tm-product-price-currency">+</span>All</a> 
+        </div>
+    </div>
+{% endfor %}

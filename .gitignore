@@ -1,0 +1,12 @@
+.idea/
+db.sqlite3
+__pycache__/
+.env/
+.env
+.resources/
+staticfiles/
+media/
+*.json
+*.xlsx
+*.csv
+
